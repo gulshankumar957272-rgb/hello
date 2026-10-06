@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Do You Love Me?  </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            <img src="image/radha.jpg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+            background-size: cover;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 2px 2px 6px black;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+        }
+
+        #yes {
+            background-color: #4CAF50;
+            color: white;
+            margin-right: 20px;
+        }
+
+        #no {
+            background-color: #f44336;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <audio id="music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <h1>Do you love me? ❤️</h1>
+
+    <div>
+        <button id="yes">YES</button>
+        <button id="no">NO</button>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById("no");
+        const yesBtn = document.getElementById("yes");
+        const music = document.getElementById("music");
+
+        let moveInterval = null;
+        yesBtn.addEventListener("click", () => {
+            music.play();
+            alert("I love you too 😍");
+        });
+        noBtn.addEventListener("click", () => {
+            if (moveInterval !== null) return; 
+
+            moveInterval = setInterval(() => {
+                const maxX = window.innerWidth - noBtn.offsetWidth;
+                const maxY = window.innerHeight - noBtn.offsetHeight;
+
+                const x = Math.random() * maxX;
+                const y = Math.random() * maxY;
+
+                noBtn.style.left = x + "px";
+                noBtn.style.top = y + "px";
+            }, 1000); 
+        });
+    </script>
+
+</body>
+</html>
